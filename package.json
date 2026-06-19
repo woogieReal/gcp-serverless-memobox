@@ -1,0 +1,28 @@
+{
+  "name": "gcp-serverless-memobox",
+  "version": "1.0.0",
+  "description": "Google Cloud Functions 와 GCS 기반으로 서버리스 메모 CRUD API with GitHub Actions",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woogieReal/gcp-serverless-memobox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/woogieReal/gcp-serverless-memobox/issues"
+  },
+  "homepage": "https://github.com/woogieReal/gcp-serverless-memobox#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^7.21.0",
+    "express": "^5.2.1"
+  }
+}

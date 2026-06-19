@@ -40,6 +40,7 @@
 
 - [ ] IP 화이트리스트 미들웨어 구현
   - `x-forwarded-for` 마지막 값 추출
+  - 환경변수 `ALLOWED_IPS` (쉼표 구분)에서 허용 IP 목록 로드
   - 허용 IP 목록과 비교 → 불일치 시 `403` 반환
 - [ ] 파일명 검증 미들웨어 구현
   - 허용 패턴(`^[a-zA-Z0-9_-]+$`) 및 100자 길이 검증 → 위반 시 `400` 반환
@@ -61,6 +62,7 @@
   - 환경: `Production` (Environment Secrets 참조)
   - 인증: `GCP_SA_KEY`로 gcloud 인증
   - 배포: `gcloud functions deploy --gen2` 실행
+  - `--set-env-vars ALLOWED_IPS=<허용IP목록>` 옵션으로 환경변수 주입
 
 ---
 

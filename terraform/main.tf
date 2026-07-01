@@ -57,6 +57,13 @@ resource "google_project_iam_member" "cf_developer" {
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+# Cloud Run 서비스 IAM 정책 설정 권한 (--allow-unauthenticated 적용에 필요)
+resource "google_project_iam_member" "run_admin" {
+  project = "woogie-sandbox-gcp"
+  role    = "roles/run.admin"
+  member  = "serviceAccount:${google_service_account.github_actions.email}"
+}
+
 # Cloud Functions 배포 시 기본 컴퓨트 서비스 계정 사용 권한
 resource "google_service_account_iam_member" "github_actions_act_as" {
   service_account_id = "projects/woogie-sandbox-gcp/serviceAccounts/371125433847-compute@developer.gserviceaccount.com"

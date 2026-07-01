@@ -33,6 +33,10 @@ resource "google_project_service" "artifactregistry" {
   service = "artifactregistry.googleapis.com"
 }
 
+resource "google_project_service" "cloudresourcemanager" {
+  service = "cloudresourcemanager.googleapis.com"
+}
+
 # GCS 버킷
 resource "google_storage_bucket" "memobox" {
   name          = "woogie-sandbox-gcp-memobox"

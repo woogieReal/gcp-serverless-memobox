@@ -57,6 +57,13 @@ resource "google_project_iam_member" "cf_developer" {
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+# Cloud Functions 배포 시 기본 컴퓨트 서비스 계정 사용 권한
+resource "google_service_account_iam_member" "github_actions_act_as" {
+  service_account_id = "projects/woogie-sandbox-gcp/serviceAccounts/371125433847-compute@developer.gserviceaccount.com"
+  role               = "roles/iam.serviceAccountUser"
+  member             = "serviceAccount:${google_service_account.github_actions.email}"
+}
+
 # Storage Object Admin 권한 (버킷 한정)
 resource "google_storage_bucket_iam_member" "storage_admin" {
   bucket = google_storage_bucket.memobox.name

@@ -1,0 +1,36 @@
+name: Deploy to Cloud Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy to Cloud Functions
+        run: |
+          gcloud functions deploy memoApi \
+            --gen2 \
+            --runtime=nodejs20 \
+            --region=asia-northeast3 \
+            --source=. \
+            --entry-point=memoApi \
+            --trigger-http \
+            --allow-unauthenticated \
+            --set-env-vars ALLOWED_IPS=${{ secrets.ALLOWED_IPS }},BUCKET_NAME=woogie-sandbox-gcp-memobox \
+            --project=woogie-sandbox-gcp

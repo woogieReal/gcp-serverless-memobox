@@ -16,6 +16,23 @@ provider "google" {
   region  = "asia-northeast3"
 }
 
+# 필수 GCP API 활성화
+resource "google_project_service" "cloudfunctions" {
+  service = "cloudfunctions.googleapis.com"
+}
+
+resource "google_project_service" "cloudbuild" {
+  service = "cloudbuild.googleapis.com"
+}
+
+resource "google_project_service" "run" {
+  service = "run.googleapis.com"
+}
+
+resource "google_project_service" "artifactregistry" {
+  service = "artifactregistry.googleapis.com"
+}
+
 # GCS 버킷
 resource "google_storage_bucket" "memobox" {
   name          = "woogie-sandbox-gcp-memobox"

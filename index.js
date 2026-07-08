@@ -6,6 +6,6 @@ const storage = new Storage();
 
 app.use(express.json());
 
-app.use('/memoApi', require('./routes/memo')(storage));
+app.use('/', require('./routes/memo')(storage));
 
 exports.memoApi = app;
